@@ -78,7 +78,7 @@
 
             function loadElectionResultsFromSky(){
 
-                var url = 'https://corsproxy.io/?' + encodeURIComponent('https://election.news.sky.com/api/elections/get-data?queryKey=ELECTIONS_DATA_QUERY&electionId=2024-07-04-UK_GENERAL&electionType=UK_GENERAL');
+                var url = 'https://corsproxy.io/?' + encodeURIComponent('https://election.news.sky.com/api/elections/get-data?queryKey=ELECTIONS_DATA_QUERY&electionId=2024-07-04-UK_GENERAL&electionType=UK_GENERAL&time='+Date.now());
                 
                 $.ajax(url).done(function (res) {
                     parties = res.election.partyResults;
@@ -213,7 +213,7 @@
                     console.log("Found "+others+" other parties: "+otherSeats+" ("+otherSeats*100/res.election.seatsAvailable+"%) gain: "+otherSeatsGain);
 
                     $("li.styles_status-item__V_358 strong").eq(1).text(res.election.seatsDeclared+"/"+res.election.seatsAvailable);
-                    $("li.styles_status-item__V_358 strong").eq(2).text((res.election.turnoutPercentage || 0) + "% (" +(res.election.turnout || 0) + ")");
+                    $("li.styles_status-item__V_358 strong").eq(2).text(Math.round((res.election.turnoutPercentage || 0)*10)/10 + "% (" +(res.election.turnout || 0) + ")");
 
                 });
 
