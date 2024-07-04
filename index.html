@@ -74,8 +74,6 @@
     <script>
         $(document).ready(function(){
 
-            setInterval(loadElectionResultsFromSky(),60000);
-
             function loadElectionResultsFromSky(){
 
                 var url = 'https://corsproxy.io/?' + encodeURIComponent('https://election.news.sky.com/api/elections/get-data?queryKey=ELECTIONS_DATA_QUERY&electionId=2024-07-04-UK_GENERAL&electionType=UK_GENERAL&time='+Date.now());
@@ -220,6 +218,11 @@
 
 
             }
+
+					  loadElectionResultsFromSky();
+
+            setInterval(loadElectionResultsFromSky,60000);
+
         });
     </script>
 </body>
